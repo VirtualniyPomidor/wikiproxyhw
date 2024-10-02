@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  wiki-proxy:
+    image: sha256:f031fa7f8e40b73687df2e3f951d345fb2b17bbe4911de342abb77004684a3d2
+    container_name: wiki-proxy
+    environment:
+      - SERVER_HOST=0.0.0.0
+      - SERVER_PORT=5000
+    ports:
+      - "9000:5000"
+    depends_on:
+      - redis
+
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - "6379:6379"
